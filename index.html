@@ -29,13 +29,12 @@
   header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(248,246,241,.8);border-bottom:1px solid var(--line);transition:background .5s,border-color .5s}
   body.show-sky header{background:rgba(7,10,22,.3);border-bottom-color:rgba(255,255,255,.12)}
   nav{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;min-height:72px;padding:8px 0}
-  .brand{display:flex;align-items:center;gap:12px;transition:color .4s}
-  .mark{width:40px;height:40px;border-radius:11px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:"Bricolage Grotesque";font-weight:700;font-size:16px;transition:.4s}
-  body.show-sky .mark{background:#fff;color:var(--night)}
-  .bt small{display:block;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700}
-  .bt b{font-family:"Bricolage Grotesque";font-weight:700;font-size:18px;letter-spacing:-.4px}
-  body.show-sky .bt b{color:#fff}
-  body.show-sky .bt small{color:var(--accent-soft)}
+  .brand{display:flex;align-items:center;text-decoration:none;color:var(--ink);transition:color .4s}
+  .brand .logo{font-family:"Bricolage Grotesque";font-weight:800;font-size:28px;letter-spacing:-1px;line-height:1}
+  .brand .logo em{font-style:normal;color:var(--accent);transition:color .4s}
+  .brand .logo .d{color:var(--accent);transition:color .4s}
+  body.show-sky .brand{color:#fff}
+  body.show-sky .brand .logo em,body.show-sky .brand .logo .d{color:var(--accent-soft)}
   .nav-links{display:flex;gap:4px;flex-wrap:wrap}
   .nav-links a{font-size:14.5px;font-weight:600;padding:8px 14px;border-radius:10px;color:var(--ink-soft);transition:.18s;cursor:pointer}
   .nav-links a:hover{color:var(--ink);background:rgba(0,0,0,.04)}
@@ -157,7 +156,7 @@
 <div class="sky-layer"><canvas id="sky"></canvas></div>
 
 <header><nav class="wrap">
-  <a href="#about" class="brand"><span class="mark">AR</span><span class="bt"><small>Personal site</small><b>Anna Romanovskaya</b></span></a>
+  <a href="#about" class="brand" aria-label="Anna Romanovskaya"><span class="logo">A<em>R</em><span class="d">.</span></span></a>
   <div class="nav-links" id="links">
     <a href="#about" data-page="about">About</a>
     <a href="#publications" data-page="publications">Publications</a>
@@ -207,19 +206,19 @@
 
         <div class="tcard"><div class="fig">
           <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="30" x2="400" y2="30" stroke="#d9cdf5"/><polyline fill="none" stroke="#7C3AED" stroke-width="2.5" points="0,30 45,30 55,82 65,30 110,30 120,92 130,30 175,30 185,68 195,30 250,30 262,95 274,30 320,30 332,75 344,30 400,30"/></svg>
-        </div><div class="body"><div class="num">01</div><h3>Chemical composition of stars</h3><p>Determining detailed elemental abundances from high-resolution stellar spectra, line by line.</p><div class="mini"><span>spectroscopy</span><span>abundances</span></div></div></div>
+        </div><div class="body"><div class="num">01</div><h3>Stellar atmospheres and chemical abundances</h3><p>I study the atmospheric parameters and chemical abundances of early-type stars, including magnetic chemically peculiar Ap/Bp stars, metallic-line Am/Fm stars, and normal O–B–A–F stars. My work is based on high-resolution spectroscopy, stellar atmosphere modelling, and synthetic spectrum fitting.</p></div></div>
 
         <div class="tcard"><div class="fig">
-          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="28" x2="400" y2="28" stroke="#d9cdf5"/><path d="M120,28 Q150,28 170,80 Q190,28 200,28" fill="none" stroke="#b794ff" stroke-width="2.5"/><path d="M195,28 Q215,28 235,86 Q255,28 280,28" fill="none" stroke="#7C3AED" stroke-width="2.5"/><path d="M275,28 Q295,28 315,80 Q335,28 360,28" fill="none" stroke="#2B4FFF" stroke-width="2.5"/></svg>
-        </div><div class="body"><div class="num">02</div><h3>Magnetic chemically peculiar stars</h3><p>Studying strong magnetic fields and anomalous abundances through Zeeman-split spectral lines.</p><div class="mini"><span>magnetism</span><span>CP stars</span></div></div></div>
+          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="92" x2="400" y2="92" stroke="#d9cdf5"/><line x1="6" y1="10" x2="6" y2="92" stroke="#d9cdf5"/><polyline fill="none" stroke="#7C3AED" stroke-width="3" points="10,74 130,71 165,38 230,28 400,22"/><polyline fill="none" stroke="#b794ff" stroke-width="2.5" points="10,84 145,82 185,56 250,48 400,40"/><polyline fill="none" stroke="#2B4FFF" stroke-width="2.5" points="10,88 170,86 210,66 280,60 400,54"/></svg>
+        </div><div class="body"><div class="num">02</div><h3>Vertical stratification in magnetic chemically peculiar stars</h3><p>For magnetic chemically peculiar stars, I investigate the vertical stratification of chemical elements in stellar atmospheres. This includes modelling how elements such as Fe, Cr, Ca, and rare-earth elements are distributed with atmospheric depth and how these abundance gradients affect observed spectra and stellar flux distributions.</p></div></div>
 
         <div class="tcard"><div class="fig">
           <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="92" x2="400" y2="92" stroke="#d9cdf5"/><g fill="#7C3AED"><rect x="30" y="56" width="34" height="36" rx="3" opacity=".55"/><rect x="95" y="40" width="34" height="52" rx="3" opacity=".7"/><rect x="160" y="24" width="34" height="68" rx="3"/><rect x="225" y="48" width="34" height="44" rx="3" opacity=".7"/><rect x="290" y="34" width="34" height="58" rx="3" opacity=".85"/><rect x="345" y="62" width="34" height="30" rx="3" opacity=".5"/></g></svg>
-        </div><div class="body"><div class="num">03</div><h3>Normal &amp; metallic-line (Am) stars</h3><p>Comparing line strengths and abundances of Am and normal A-type stars to probe their atmospheres.</p><div class="mini"><span>Am stars</span><span>atmospheres</span></div></div></div>
+        </div><div class="body"><div class="num">03</div><h3>Non-LTE abundance analysis</h3><p>I am also interested in implementing non-LTE calculations in stellar abundance analysis. This work uses model atoms developed by my colleagues at INASAN and is aimed at improving the reliability of abundance determinations for selected chemical elements.</p></div></div>
 
         <div class="tcard"><div class="fig">
           <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="26" x2="400" y2="26" stroke="#d9cdf5"/><polyline fill="none" stroke="#7C3AED" stroke-width="2.5" points="0,26 80,26 100,80 120,26 230,26 250,52 270,26 400,26"/><g fill="#2B4FFF" opacity=".75"><circle cx="40" cy="26" r="3"/><circle cx="170" cy="26" r="3"/><circle cx="330" cy="26" r="3"/></g></svg>
-        </div><div class="body"><div class="num">04</div><h3>Binary stars &amp; machine learning</h3><p>Analysing binary systems from spectra and light curves, using machine-learning methods to speed up the work.</p><div class="mini"><span>binaries</span><span>ML</span></div></div></div>
+        </div><div class="body"><div class="num">04</div><h3>Binary systems and machine-learning methods</h3><p>I work on the analysis of spectroscopic binary systems, including spectra disentangling and self-consistent analysis of composite spectra. More recently, I have been applying machine-learning methods to determine the fundamental parameters of both components of binary stars directly from observed or synthetic composite spectra.</p></div></div>
 
       </div>
     </div></div>
