@@ -209,7 +209,7 @@
   .lbcap h2{font-family:"Bricolage Grotesque";font-weight:700;font-size:22px;letter-spacing:-.3px}
   .lbdate{font-family:"Space Mono",monospace;font-size:12px;color:var(--ink-soft);font-weight:700;white-space:nowrap}
   .lbcap p{color:var(--ink-soft);font-size:15px;line-height:1.6;margin-top:8px}
-  .hx{position:absolute;top:10px;right:14px;background:rgba(0,0,0,.4);color:#fff;border:none;width:34px;height:34px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1;z-index:2}
+  .hx{position:absolute;top:10px;right:14px;background:rgba(0,0,0,.4);color:#fff;border:none;width:34px;height:34px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1;z-index:6}
   @media(max-width:680px){.hdemo{grid-template-columns:1fr;gap:14px}.hmenu{flex-direction:row;flex-wrap:wrap;gap:6px}.htab{border-left:none;padding:8px 12px}.htab.on{border-left:none}.hgrid{grid-template-columns:1fr 1fr}}
   /* ===== Night theme (grey) for whole site ===== */
   body.night{--bg:#161922;--ink:#e9eaf0;--ink-soft:#a6aab6;--line:#2c303b;--card:#1e2230}
@@ -237,10 +237,14 @@
   body.night .figph{color:var(--accent-soft)}
   body.night .figbox.ph:hover{border-color:#e9ddff;background:rgba(183,148,255,.08)}
   body.night .figbox.ph:hover .figph{color:#e9ddff}
-  .harrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;background:rgba(255,255,255,.18);color:#fff;font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:.18s;z-index:3}
-  .harrow:hover{background:rgba(255,255,255,.38)}
-  .harrow.prev{left:18px}.harrow.next{right:18px}
-  @media(max-width:680px){.harrow{width:38px;height:38px;font-size:22px}.harrow.prev{left:8px}.harrow.next{right:8px}}
+  .lbstage{position:relative}
+  .harrow{position:absolute;top:0;bottom:0;width:50%;border:none;cursor:pointer;z-index:3;display:flex;align-items:center;color:#fff;opacity:0;transition:opacity .22s}
+  .lb:hover .harrow{opacity:1}
+  .harrow.prev{left:0;justify-content:flex-start;padding-left:14px;background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,0))}
+  .harrow.next{right:0;justify-content:flex-end;padding-right:14px;background:linear-gradient(270deg,rgba(0,0,0,.5),rgba(0,0,0,0))}
+  .harrow svg{width:30px;height:30px;filter:drop-shadow(0 1px 5px rgba(0,0,0,.6));transition:transform .18s}
+  .harrow:hover svg{transform:scale(1.15)}
+  @media(hover:none){.harrow{opacity:.9}}
   body.night .lb{background:#1e2230}
   body.night .lbcap h2{color:#e9eaf0}
   body.night .lbframe{background:#161922;color:#a6aab6;border-bottom-color:#2c303b}
@@ -853,14 +857,16 @@
 <div class="hov" id="hov" onclick="if(event.target===this)closeH()">
   <figure class="lb">
     <button class="hx" onclick="closeH()" aria-label="Close">&times;</button>
-    <div class="lbimg" id="lbimg"></div>
+    <div class="lbstage">
+      <div class="lbimg" id="lbimg"></div>
+      <button class="harrow prev" id="harP" onclick="navH(-1)" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="harrow next" id="harN" onclick="navH(1)" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
     <figcaption class="lbcap">
       <div class="lbhead"><h2 id="lbt"></h2><span class="lbdate" id="lbdt"></span></div>
       <p id="lbds"></p>
     </figcaption>
   </figure>
-  <button class="harrow prev" id="harP" onclick="navH(-1)" aria-label="Previous">&#8249;</button>
-  <button class="harrow next" id="harN" onclick="navH(1)" aria-label="Next">&#8250;</button>
 </div>
 
 <script>
