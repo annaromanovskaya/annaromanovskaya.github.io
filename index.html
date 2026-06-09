@@ -26,6 +26,39 @@
   body.show-sky .sky-layer{opacity:1}
   #sky{width:100%;height:100%;display:block}
 
+  /* ===== Day theme (partial eclipse) ===== */
+  .day-layer{position:fixed;inset:0;z-index:-1;opacity:0;transition:opacity .6s;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#8197b0,#aab6c0 68%,#cdd0cd)}
+  body.show-day .day-layer{opacity:1}
+  .day-sunpos{position:absolute;top:25%;right:12%;width:0;height:0}
+  .day-rays{position:absolute;left:50%;top:50%;width:300vmax;height:300vmax;opacity:.42;animation:sunspin 120s linear infinite;
+    background:conic-gradient(from 0deg,rgba(255,240,210,0) 0deg,rgba(255,240,210,.5) 3deg,rgba(255,240,210,0) 9deg,rgba(255,240,210,.3) 20deg,rgba(255,240,210,0) 27deg,rgba(255,240,210,.44) 44deg,rgba(255,240,210,0) 52deg,rgba(255,240,210,.28) 70deg,rgba(255,240,210,0) 78deg,rgba(255,240,210,.46) 96deg,rgba(255,240,210,0) 104deg,rgba(255,240,210,.3) 122deg,rgba(255,240,210,0) 130deg,rgba(255,240,210,.44) 150deg,rgba(255,240,210,0) 158deg,rgba(255,240,210,.28) 178deg,rgba(255,240,210,0) 186deg,rgba(255,240,210,.46) 206deg,rgba(255,240,210,0) 214deg,rgba(255,240,210,.3) 232deg,rgba(255,240,210,0) 240deg,rgba(255,240,210,.44) 260deg,rgba(255,240,210,0) 268deg,rgba(255,240,210,.28) 288deg,rgba(255,240,210,0) 296deg,rgba(255,240,210,.46) 314deg,rgba(255,240,210,0) 322deg,rgba(255,240,210,.3) 340deg,rgba(255,240,210,0) 348deg,rgba(255,240,210,.4) 358deg,rgba(255,240,210,0) 360deg);
+    -webkit-mask:radial-gradient(circle,#000 22%,rgba(0,0,0,.5) 48%,transparent 78%);mask:radial-gradient(circle,#000 22%,rgba(0,0,0,.5) 48%,transparent 78%)}
+  @keyframes sunspin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .day-sun{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:160px;height:160px}
+  .day-sun>div{position:absolute;left:50%;top:50%;border-radius:50%}
+  .dglow{width:230%;height:230%;transform:translate(-50%,-50%);animation:sunbreathe 6s ease-in-out infinite;background:radial-gradient(circle,rgba(255,246,222,.85) 30%,rgba(255,238,200,.3) 46%,rgba(255,238,200,0) 66%)}
+  @keyframes sunbreathe{0%,100%{opacity:.9}50%{opacity:1}}
+  .dsun{width:100%;height:100%;transform:translate(-50%,-50%);background:radial-gradient(circle at 50% 48%,#fffefb,#fff3d6 56%,#ffe6b0 74%,rgba(255,230,176,0) 80%)}
+  .dmoon{width:104%;height:104%;transform:translate(calc(-50% - 42px),calc(-50% - 34px));background:radial-gradient(circle at 46% 44%,#3a4150,#262b36);box-shadow:-5px 5px 18px rgba(0,0,0,.25)}
+  body.show-day header{background:rgba(255,255,255,.22);border-bottom-color:rgba(0,0,0,.06)}
+  body.show-day .hero-text h1{color:#16161D}
+  body.show-day .hero-text h1 em{color:var(--accent)}
+  body.show-day .hero-text .role{color:#33405a}
+  body.show-day .hero-text .bio{color:#39414c}
+  body.show-day .chips a{color:#16161D;border-color:rgba(0,0,0,.18);background:rgba(255,255,255,.5)}
+  body.show-day .chips a:hover{background:#16161D;color:#fff;border-color:#16161D}
+  body.show-day .btn.ghost{border-color:rgba(0,0,0,.4);color:#16161D}
+  body.show-day .btn.ghost:hover{background:#16161D;color:#fff}
+  body.show-day .scroll-hint{color:rgba(20,20,30,.5)}
+  .day-toggle{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;color:var(--ink-soft);border:1px solid var(--line);background:transparent;transition:.18s;margin-left:8px}
+  .day-toggle svg{width:14px;height:14px}
+  .day-toggle:hover{transform:translateY(-2px)}
+  body.show-sky .day-toggle{color:#fff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.05)}
+  body.show-sky .day-toggle:hover{background:#fff;color:var(--night);border-color:#fff}
+  body.show-day .day-toggle{color:#16161D;border-color:rgba(0,0,0,.18);background:rgba(255,255,255,.5)}
+  body.show-day .day-toggle:hover{background:#16161D;color:#fff;border-color:#16161D}
+  @media(max-width:780px){.day-sunpos{top:24%;left:50%;right:auto}.day-sun{width:150px;height:150px}}
+
   header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(248,246,241,.8);border-bottom:1px solid var(--line);transition:background .5s,border-color .5s}
   body.show-sky header{background:rgba(7,10,22,.3);border-bottom-color:rgba(255,255,255,.12)}
   nav{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;min-height:72px;padding:8px 0}
@@ -178,11 +211,30 @@
   .lbcap p{color:var(--ink-soft);font-size:15px;line-height:1.6;margin-top:8px}
   .hx{position:absolute;top:10px;right:14px;background:rgba(0,0,0,.4);color:#fff;border:none;width:34px;height:34px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1;z-index:2}
   @media(max-width:680px){.hdemo{grid-template-columns:1fr;gap:14px}.hmenu{flex-direction:row;flex-wrap:wrap;gap:6px}.htab{border-left:none;padding:8px 12px}.htab.on{border-left:none}.hgrid{grid-template-columns:1fr 1fr}}
+  /* ===== Night theme (grey) for whole site ===== */
+  body.night{--bg:#161922;--ink:#e9eaf0;--ink-soft:#a6aab6;--line:#2c303b;--card:#1e2230}
+  body.night .prose p{color:#c9ccd6}
+  body.night .ec .abstract{color:#c9ccd6}
+  body.night .tag{background:rgba(255,255,255,.05)}
+  body.night .tcard .fig{background:linear-gradient(180deg,#222633,#1a1e29)}
+  body.night .figbox{background:linear-gradient(180deg,#222633,#191d27)}
+  body.night .chip{border-color:rgba(255,255,255,.3)}
+  body.night .chip:hover{background:#e9eaf0;color:#161922}
+  body.night:not(.show-sky) header{background:rgba(18,21,29,.82);border-bottom-color:rgba(255,255,255,.08)}
+  body.night:not(.show-sky) .brand{color:#e9eaf0}
+  body.night:not(.show-sky) .brand .logo em,body.night:not(.show-sky) .brand .logo .d{color:var(--accent-soft)}
+  body.night:not(.show-sky) .nav-links a{color:#c2c5d0}
+  body.night:not(.show-sky) .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+  body.night:not(.show-sky) .nav-links a.active{color:#161922;background:#e9eaf0}
+  body.night:not(.show-sky) .day-toggle{color:#c2c5d0;border-color:rgba(255,255,255,.2)}
+  body.night:not(.show-sky) .day-toggle:hover{color:#fff}
+  @media(max-width:560px){nav{min-height:0;padding:4px 0}.nav-links{gap:2px;margin-top:0}.nav-links a{padding:7px 10px}}
 </style>
 </head>
-<body>
+<body class="night">
 
 <div class="sky-layer"><canvas id="sky"></canvas></div>
+<div class="day-layer"><div class="day-sunpos"><div class="day-rays"></div><div class="day-sun"><div class="dglow"></div><div class="dsun"></div><div class="dmoon"></div></div></div></div>
 
 <header><nav class="wrap">
   <a href="#about" class="brand" aria-label="Anna Romanovskaya"><span class="logo">A<em>R</em><span class="d">.</span></span></a>
@@ -192,6 +244,7 @@
     <a href="#talks" data-page="talks">Talks</a>
     <a href="#software" data-page="software">Software</a>
     <a href="#hobbies" data-page="hobbies">Hobbies</a>
+    <button class="day-toggle" id="tgl" type="button" onclick="toggleMode()" aria-label="Toggle day or night"></button>
   </div>
 </nav></header>
 
@@ -222,8 +275,8 @@
     <div class="light-block"><div class="wrap pad">
       <div class="prose indent">
         <h2 class="sechead" style="margin-bottom:24px">About me</h2>
-        <p>I am an astrophysicist working on stellar atmospheres, high-resolution spectroscopy, and chemical peculiarities in stars. My main research interests include magnetic chemically peculiar Ap/Bp stars, metallic-line Am/Fm stars, normal O–B–A–F stars, and spectroscopic binary systems.</p>
-        <p>I study how chemical anomalies, magnetic fields, stellar rotation, and binarity affect observed spectra and the determination of stellar atmospheric parameters. More recently, I have been developing and applying machine-learning methods to estimate the parameters of both components of spectroscopic binary stars from composite spectra.</p>
+        <p>I am an astrophysicist specializing in stellar atmospheres, high-resolution spectroscopy, and chemical peculiarities in stars. My primary research interests encompass magnetic chemically peculiar Ap/Bp stars, metallic-line Am/Fm stars, normal O–B–A–F stars, and spectroscopic binary systems.</p>
+        <p>I received my degree from Moscow State University in 2017. I conducted my PhD research at the Institute of Astronomy of the Russian Academy of Sciences (RAS), completing my dissertation in 2021 and defending it in 2022.</p>
         <div class="interests">
           <span class="tag">High-resolution spectroscopy</span><span class="tag">Chemical abundances</span><span class="tag">Magnetic CP stars</span><span class="tag">Am stars</span><span class="tag">Binary stars</span><span class="tag">Machine learning</span>
         </div>
@@ -235,7 +288,7 @@
       <div class="topics indent">
 
         <div class="tcard"><div class="fig">
-          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="30" x2="400" y2="30" stroke="#d9cdf5"/><polyline fill="none" stroke="#7C3AED" stroke-width="2.5" points="0,30 45,30 55,82 65,30 110,30 120,92 130,30 175,30 185,68 195,30 250,30 262,95 274,30 320,30 332,75 344,30 400,30"/></svg>
+          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="10" y1="92" x2="396" y2="92" stroke="#d9cdf5"/><line x1="10" y1="8" x2="10" y2="92" stroke="#d9cdf5"/><polyline fill="none" stroke="#c3acf2" stroke-width="1.6" points="22,60 37,57 51,62 66,55 81,58 95,52 110,61 124,54 139,50 154,56 168,48 183,53 198,46 212,51 227,44 242,49 256,42 271,47 286,40 300,45 315,38 329,36 344,32 359,30 373,28 388,26"/><g fill="#7C3AED"><circle cx="22" cy="60" r="2.6"/><circle cx="37" cy="57" r="2.6"/><circle cx="51" cy="62" r="2.6"/><circle cx="66" cy="55" r="2.6"/><circle cx="81" cy="58" r="2.6"/><circle cx="95" cy="52" r="2.6"/><circle cx="110" cy="61" r="2.6"/><circle cx="124" cy="54" r="2.6"/><circle cx="139" cy="50" r="2.6"/><circle cx="154" cy="56" r="2.6"/><circle cx="168" cy="48" r="2.6"/><circle cx="183" cy="53" r="2.6"/><circle cx="198" cy="46" r="2.6"/><circle cx="212" cy="51" r="2.6"/><circle cx="227" cy="44" r="2.6"/><circle cx="242" cy="49" r="2.6"/><circle cx="256" cy="42" r="2.6"/><circle cx="271" cy="47" r="2.6"/><circle cx="286" cy="40" r="2.6"/><circle cx="300" cy="45" r="2.6"/><circle cx="315" cy="38" r="2.6"/><circle cx="329" cy="36" r="2.6"/><circle cx="344" cy="32" r="2.6"/><circle cx="359" cy="30" r="2.6"/><circle cx="373" cy="28" r="2.6"/><circle cx="388" cy="26" r="2.6"/></g></svg>
         </div><div class="body"><div class="num">01</div><h3>Stellar atmospheres and chemical abundances</h3><p>I study the atmospheric parameters and chemical abundances of early-type stars, including magnetic chemically peculiar Ap/Bp stars, metallic-line Am/Fm stars, and normal O–B–A–F stars. My work is based on high-resolution spectroscopy, stellar atmosphere modelling, and synthetic spectrum fitting.</p></div></div>
 
         <div class="tcard"><div class="fig">
@@ -243,11 +296,11 @@
         </div><div class="body"><div class="num">02</div><h3>Vertical stratification in magnetic chemically peculiar stars</h3><p>For magnetic chemically peculiar stars, I investigate the vertical stratification of chemical elements in stellar atmospheres. This includes modelling how elements such as Fe, Cr, Ca, and rare-earth elements are distributed with atmospheric depth and how these abundance gradients affect observed spectra and stellar flux distributions.</p></div></div>
 
         <div class="tcard"><div class="fig">
-          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="92" x2="400" y2="92" stroke="#d9cdf5"/><g fill="#7C3AED"><rect x="30" y="56" width="34" height="36" rx="3" opacity=".55"/><rect x="95" y="40" width="34" height="52" rx="3" opacity=".7"/><rect x="160" y="24" width="34" height="68" rx="3"/><rect x="225" y="48" width="34" height="44" rx="3" opacity=".7"/><rect x="290" y="34" width="34" height="58" rx="3" opacity=".85"/><rect x="345" y="62" width="34" height="30" rx="3" opacity=".5"/></g></svg>
+          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="30" x2="400" y2="30" stroke="#d9cdf5"/><polyline fill="none" stroke="#7C3AED" stroke-width="2.5" points="0,30 45,30 55,82 65,30 110,30 120,92 130,30 175,30 185,68 195,30 250,30 262,95 274,30 320,30 332,75 344,30 400,30"/></svg>
         </div><div class="body"><div class="num">03</div><h3>Non-LTE abundance analysis</h3><p>I am also interested in implementing non-LTE calculations in stellar abundance analysis. This work uses model atoms developed by my colleagues at INASAN and is aimed at improving the reliability of abundance determinations for selected chemical elements.</p></div></div>
 
         <div class="tcard"><div class="fig">
-          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="26" x2="400" y2="26" stroke="#d9cdf5"/><polyline fill="none" stroke="#7C3AED" stroke-width="2.5" points="0,26 80,26 100,80 120,26 230,26 250,52 270,26 400,26"/><g fill="#2B4FFF" opacity=".75"><circle cx="40" cy="26" r="3"/><circle cx="170" cy="26" r="3"/><circle cx="330" cy="26" r="3"/></g></svg>
+          <svg viewBox="0 0 400 100" preserveAspectRatio="none"><line x1="0" y1="30" x2="400" y2="30" stroke="#d9cdf5"/><polyline fill="none" stroke="#7C3AED" stroke-width="2.2" points="0,30 50,30 60,78 70,30 150,30 162,90 174,30 250,30 262,70 274,30 360,30 372,84 384,30 400,30"/><polyline fill="none" stroke="#2B4FFF" stroke-width="2.2" opacity=".7" points="0,34 62,34 72,80 82,34 162,34 174,92 186,34 262,34 274,72 286,34 372,34 384,86 396,34 400,34"/></svg>
         </div><div class="body"><div class="num">04</div><h3>Binary systems and machine-learning methods</h3><p>I work on the analysis of spectroscopic binary systems, including spectra disentangling and self-consistent analysis of composite spectra. More recently, I have been applying machine-learning methods to determine the fundamental parameters of both components of binary stars directly from observed or synthetic composite spectra.</p></div></div>
 
       </div>
@@ -817,7 +870,15 @@
   resize();draw();addEventListener('resize',resize);
 
   let onHome=true;
-  function updateSky(){document.body.classList.toggle('show-sky',onHome&&scrollY<innerHeight*.55);}
+  var SUN_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg> Day';
+  var MOON_ICON='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg> Night';
+  var mode='night';
+  function syncToggle(){var b=document.getElementById('tgl');if(b)b.innerHTML=mode==='day'?SUN_ICON:MOON_ICON;}
+  function applyTheme(){document.body.classList.toggle('night',mode==='night');document.body.classList.toggle('day',mode==='day');}
+  function toggleMode(){mode=(mode==='day')?'night':'day';applyTheme();syncToggle();updateSky();}
+  function updateSky(){var atTop=onHome&&scrollY<innerHeight*.55;
+    document.body.classList.toggle('show-sky',atTop&&mode==='night');
+    document.body.classList.toggle('show-day',atTop&&mode==='day');}
   function show(id){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     const page=document.getElementById(id)||document.getElementById('about');
@@ -829,6 +890,7 @@
   addEventListener('scroll',updateSky,{passive:true});
   function route(){show((location.hash||'#about').slice(1));}
   addEventListener('hashchange',route);route();
+  applyTheme();syncToggle();
   function pickH(btn){var d=btn.closest('.hdemo'),c=btn.dataset.cat;
     d.querySelectorAll('.htab').forEach(function(x){x.classList.toggle('on',x===btn);});
     d.querySelectorAll('.hpanel').forEach(function(p){p.classList.toggle('on',p.dataset.cat===c);});}
