@@ -229,9 +229,14 @@
   body.night:not(.show-sky) .day-toggle{color:#c2c5d0;border-color:rgba(255,255,255,.2)}
   body.night:not(.show-sky) .day-toggle:hover{color:#fff}
   @media(max-width:560px){nav{min-height:0;padding:4px 0}.nav-links{gap:2px;margin-top:0}.nav-links a{padding:7px 10px}}
-  .figbox.ph{background:none;border:1.6px dashed var(--frame);box-shadow:none}
-  .figph{color:#a9a195;font-family:"Space Mono",monospace;font-size:13px;letter-spacing:1px}
-  body.night .figph{color:#7e818c}
+  .figbox.ph{background:none;border:1.6px dashed var(--accent);box-shadow:none;transition:.18s}
+  .figph{color:var(--accent);font-family:"Space Mono",monospace;font-size:13px;letter-spacing:1px;transition:.18s}
+  .figbox.ph:hover{border-color:var(--accent-2);background:rgba(43,79,255,.06)}
+  .figbox.ph:hover .figph{color:var(--accent-2)}
+  body.night .figbox.ph{border-color:var(--accent-soft)}
+  body.night .figph{color:var(--accent-soft)}
+  body.night .figbox.ph:hover{border-color:#e9ddff;background:rgba(183,148,255,.08)}
+  body.night .figbox.ph:hover .figph{color:#e9ddff}
 </style>
 </head>
 <body class="night">
@@ -472,7 +477,7 @@
       </div>
 
       <div class="entry">
-        <div class="figbox ph"><span class="figph">figure</span></div>
+        <div class="figbox"><img src="assets/fig/cause78vir.jpg" alt="figure" loading="lazy"></div>
         <div class="ec"><div class="meta-top">2019 · CONFERENCE · IN ENGLISH</div>
           <h3>The Cause of Surface Abundance Inhomogeneities in the Ap Star 78 Vir</h3>
           
